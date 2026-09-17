@@ -1,0 +1,343 @@
+/* ---------------------------------------------------------
+   Tokens
+--------------------------------------------------------- */
+:root {
+  --ink: #1B1F2B;
+  --ink-soft: #262B3B;
+  --paper: #EDEAE2;
+  --paper-dim: #E1DDD2;
+  --line: #37405A;
+  --line-on-paper: #D2CDBE;
+  --gold: #C9A227;
+  --gold-dim: #8E7220;
+  --slate: #8A93A6;
+  --slate-on-paper: #6B6455;
+
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --max: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--gold); color: var(--ink); }
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+  transition: border-color 0.15s ease;
+}
+a:hover { border-color: var(--gold); }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   Shell
+--------------------------------------------------------- */
+.shell {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+header.site {
+  border-bottom: 1px solid var(--line);
+}
+header.site .shell {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.wordmark {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--paper);
+  border-bottom: none;
+}
+.wordmark:hover { border-bottom: none; color: var(--gold); }
+
+nav.site-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+}
+nav.site-nav a {
+  color: var(--slate);
+  border-bottom: none;
+}
+nav.site-nav a:hover { color: var(--paper); }
+nav.site-nav a[aria-current="page"] { color: var(--gold); }
+
+footer.site {
+  border-top: 1px solid var(--line);
+  margin-top: 96px;
+}
+footer.site .shell {
+  padding-top: 28px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--slate);
+}
+footer.site nav { display: flex; gap: 20px; }
+footer.site a { color: var(--slate); border-bottom: none; }
+footer.site a:hover { color: var(--gold); }
+
+/* ---------------------------------------------------------
+   Hero
+--------------------------------------------------------- */
+.hero {
+  padding: 88px 0 56px;
+}
+.hero .eyebrow {
+  font-size: 14px;
+  color: var(--gold);
+  margin: 0 0 18px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(34px, 6vw, 50px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 22px;
+  max-width: 15ch;
+}
+.hero p.lede {
+  font-size: 19px;
+  color: var(--slate);
+  max-width: 46ch;
+  margin: 0 0 32px;
+}
+.hero .actions { display: flex; gap: 16px; align-items: center; }
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 3px;
+  border-bottom: none;
+}
+.btn.primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+.btn.primary:hover { background: #dcb336; }
+.btn.ghost {
+  color: var(--paper);
+  border: 1px solid var(--line);
+}
+.btn.ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ---------------------------------------------------------
+   Dialogue turns — the recurring structural device.
+   Claude's product is a conversation, so content that explains
+   what it does is laid out as a running exchange rather than
+   cards or bullet features.
+--------------------------------------------------------- */
+.thread {
+  padding: 40px 0 8px;
+  border-top: 1px solid var(--line);
+}
+.turn {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 20px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+.turn .role {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--slate);
+  padding-top: 3px;
+}
+.turn.claude .role { color: var(--gold); }
+.turn h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 21px;
+  margin: 0 0 8px;
+  color: var(--paper);
+}
+.turn p {
+  margin: 0;
+  color: var(--slate);
+  max-width: 54ch;
+}
+.turn:last-child { border-bottom: none; }
+
+/* ---------------------------------------------------------
+   Section on paper (used for a change of register)
+--------------------------------------------------------- */
+.on-paper {
+  background: var(--paper);
+  color: var(--ink);
+  margin-top: 8px;
+}
+.on-paper .shell { padding-top: 72px; padding-bottom: 72px; }
+.on-paper h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 30px;
+  margin: 0 0 20px;
+  max-width: 20ch;
+}
+.on-paper p {
+  color: var(--slate-on-paper);
+  max-width: 58ch;
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+.on-paper a { color: var(--gold-dim); }
+.on-paper a:hover { color: #7a6119; }
+
+.principles {
+  display: grid;
+  gap: 28px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line-on-paper);
+}
+.principle dt {
+  font-family: var(--serif);
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.principle dd {
+  margin: 0;
+  color: var(--slate-on-paper);
+  max-width: 56ch;
+}
+
+/* ---------------------------------------------------------
+   About page specifics
+--------------------------------------------------------- */
+.page-head {
+  padding: 72px 0 8px;
+}
+.page-head .eyebrow {
+  font-size: 14px;
+  color: var(--gold);
+  margin: 0 0 18px;
+}
+.page-head h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 5vw, 42px);
+  line-height: 1.16;
+  margin: 0 0 20px;
+  max-width: 17ch;
+}
+.page-head p.lede {
+  font-size: 18px;
+  color: var(--slate);
+  max-width: 52ch;
+  margin: 0 0 8px;
+}
+
+.prose {
+  padding: 40px 0 16px;
+  border-top: 1px solid var(--line);
+}
+.prose p { max-width: 62ch; }
+.prose h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 23px;
+  margin: 40px 0 14px;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose p { color: var(--slate); margin: 0 0 16px; }
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 15px;
+}
+.timeline li:last-child { border-bottom: none; }
+.timeline .when {
+  color: var(--gold);
+  font-family: var(--serif);
+}
+.timeline .what { color: var(--slate); }
+
+/* ---------------------------------------------------------
+   Error page
+--------------------------------------------------------- */
+.error-wrap {
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+}
+.error-block { padding: 40px 0; }
+.error-code {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--gold);
+  margin: 0 0 16px;
+  letter-spacing: 0.02em;
+}
+.error-block h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.2;
+  margin: 0 0 18px;
+  max-width: 18ch;
+}
+.error-block p {
+  color: var(--slate);
+  max-width: 48ch;
+  margin: 0 0 30px;
+  font-size: 17px;
+}
+.error-actions { display: flex; gap: 16px; }
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+@media (max-width: 560px) {
+  .turn { grid-template-columns: 1fr; gap: 6px; }
+  .turn .role { padding-top: 0; }
+  .timeline li { grid-template-columns: 1fr; gap: 4px; }
+  header.site .shell { flex-direction: column; align-items: flex-start; gap: 14px; }
+  footer.site .shell { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
